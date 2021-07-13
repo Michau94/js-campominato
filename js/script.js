@@ -37,6 +37,7 @@ con difficoltà 2 => tra 1 e 50
 // * display 
 var displayLevel = document.getElementById('difficulty');
 var pointsDisplay = document.getElementById('points');
+var infoMessage = document.getElementById('message');
 
 // array bombe di 16 cifre da 1 a 100 (cifre diverse)
 var bombs = [];
@@ -75,6 +76,8 @@ switch (level) {
         break;
 }
 
+infoMessage.innerText = 'per favore inserire un numero compreso tra 1 e ' + maxNum;
+
 // stampa
 console.log('Livello di difficoltà scelto:', level);
 displayLevel.innerText = 'Livello di difficoltà scelto:' + level;
@@ -103,8 +106,9 @@ while (!bombs.includes(userNumber) || !userChoice.includes(userNumber) && bomba 
     var userNumber = parseInt(prompt('Inserisci un numero' + 'tentativi restanti: ' + (85 - i), 1));
 
     while (validateNum(1, maxNum, userNumber) === false) {
-        alert('per favore inserire un numero compreso tra 1 e ' + maxNum)
-        userNumber = parseInt(prompt('Inserisci un numero ', 1));
+        infoMessage.innerText = 'per favore inserire un numero compreso tra 1 e ' + maxNum;
+        //alert('per favore inserire un numero compreso tra 1 e ' + maxNum)
+        userNumber = parseInt(prompt('per favore inserire un numero compreso tra 1 e ' + maxNum, 1));
     };
 
     // se scelta già effettuata richiedere numero
