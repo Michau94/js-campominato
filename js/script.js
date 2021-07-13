@@ -34,6 +34,10 @@ con difficoltà 2 => tra 1 e 50
 
 */
 
+// * display 
+var displayLevel = document.getElementById('difficulty');
+var pointsDisplay = document.getElementById('points');
+
 // array bombe di 16 cifre da 1 a 100 (cifre diverse)
 var bombs = [];
 
@@ -73,12 +77,12 @@ switch (level) {
 
 // stampa
 console.log('Livello di difficoltà scelto:', level);
+displayLevel.innerText = 'Livello di difficoltà scelto:' + level;
 
 // generazione array bomba
 while (bombs.length < 16) {
-    console.log(maxNum);
+
     var randomNumber = randomizeNumber(1, maxNum);
-    console.log(randomNumber);
 
     if (!bombs.includes(randomNumber)) {
         bombs.push(randomNumber);
@@ -96,11 +100,11 @@ var i = 0;
 while (!bombs.includes(userNumber) || !userChoice.includes(userNumber) && bomba === false && i < (100 - 16)) {
 
     // se array bombe non iclude scelta utente e array scelta utente non include lo stesso numero continua a giocare
-    var userNumber = parseInt(prompt('Inserisci un numero', 1));
+    var userNumber = parseInt(prompt('Inserisci un numero' + 'tentativi restanti: ' + (85 - i), 1));
 
     while (validateNum(1, maxNum, userNumber) === false) {
         alert('per favore inserire un numero compreso tra 1 e ' + maxNum)
-        userNumber = parseInt(prompt('Inserisci un numero', 1));
+        userNumber = parseInt(prompt('Inserisci un numero ', 1));
     };
 
     // se scelta già effettuata richiedere numero
@@ -130,6 +134,8 @@ console.log(userChoice);
 
 // output Punteggio
 console.log('Punteggio ottenuto: ', userChoice.length);
+pointsDisplay.innerText = 'Punteggio ottenuto: ' + userChoice.length;
+
 
 
 
