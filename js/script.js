@@ -43,9 +43,11 @@ var userChoice = [];
 //utilizzata per interromper ciclo while.
 var bomba = false;
 
+// generazione array bomba
 var i = 0;
 while (bombs.length < 16) {
-    var randomNumber = Math.floor(Math.random() * (100 - 1 + 1) + 1);
+
+    var randomNumber = randomizeNumber(1, 100);
     if (!bombs.includes(randomNumber)) {
         bombs.push(randomNumber);
     }
@@ -56,26 +58,27 @@ while (bombs.length < 16) {
 console.log(bombs);
 
 
-//richiesta all'utente di un numero per 100 - 16 (numero bombe)
-
-
-
-
-
 var i = 0;
 
-while (!bombs.includes(userNumber) || !userChoice.includes(userNumber) && bomba === false) {
+while (!bombs.includes(userNumber) || !userChoice.includes(userNumber) && bomba === false && i < (100 - 16)) {
 
     // se array bombe non iclude scelta utente e array scelta utente non include lo stesso numero continua a giocare
     var userNumber = parseInt(prompt('Inserisci un numero', 1));
 
+    while (validateNum(1, 100, userNumber) === false) {
+        alert('per favore inserire un numero compreso nel range')
+        userNumber = parseInt(prompt('Inserisci un numero', 1));
+    };
+
     // se scelta già effettuata rischiedere numero
-    while (userChoice.includes(userNumber)) {
+    //userChoice.includes(userNumber) - soluzione easy
+    while (arrayIncludes(userChoice, userNumber)) {
         userNumber = parseInt(prompt('Numero già inserito riprovare', 1));
     }
 
     // se bombs include scelta utente il gioco finisce GAME OVER
-    if (bombs.includes(userNumber)) {
+    //bombs.includes(userNumber) - soluzione easy
+    if (arrayIncludes(bombs, userNumber)) {
         bomba = true;
         alert('GameOver');
 
@@ -91,6 +94,43 @@ while (!bombs.includes(userNumber) || !userChoice.includes(userNumber) && bomba 
 console.log(userChoice);
 
 console.log('Punteggio ottenuto: ', userChoice.length);
+
+
+
+
+// Functions 
+
+// Random Number 
+function randomizeNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+// Ricerca in array
+function arrayIncludes(myArray, myElement) {
+
+    var includes = false;
+    var i = 0;
+    while (i < myArray.length) {
+        if (myElement === myArray[i]) {
+            includes = true;
+        }
+
+        i++;
+    }
+    return includes;
+}
+
+// Validate Number
+
+function validateNum(min, max, num) {
+    result = false;
+    if (num >= min && num <= max) {
+        result = true;
+    }
+    return result;
+}
+
+
 
 
 
