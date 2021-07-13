@@ -51,7 +51,7 @@ var maxNum = 0;
 var level = prompt('Easy, medium or hard').toLowerCase().trim();
 
 // Validazione difficoltà
-while (level != 'easy' && level != 'medium' && level != 'high') {
+while (level != 'easy' && level != 'medium' && level != 'hard') {
     alert('Please insert correct difficulty');
     level = prompt('Easy, medium or hard').toLowerCase().trim();
 }
@@ -66,19 +66,19 @@ switch (level) {
     case 'medium':
         maxNum = 80;
         break;
-    case 'high':
+    case 'hard':
         maxNum = 50;
         break;
 }
 
-// stampa difficoltà scelta
+// stampa
 console.log('Livello di difficoltà scelto:', level);
 
 // generazione array bomba
 while (bombs.length < 16) {
-
+    console.log(maxNum);
     var randomNumber = randomizeNumber(1, maxNum);
-
+    console.log(randomNumber);
 
     if (!bombs.includes(randomNumber)) {
         bombs.push(randomNumber);
