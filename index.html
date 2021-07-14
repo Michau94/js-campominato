@@ -5,33 +5,42 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Campo Minato</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=IBM+Plex+Mono:wght@300&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
     <div class="flex">
-        <div class="game">
-            <h1 class="m-15">Campo Minato</h1>
-            <select name="level" id="level">
-                <option value="easy" selected>Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
-            </select>
-
-            <div class="m-15">
-                <p id="difficulty"></p>
-                <p id="message"></p>
-                <p id="alert" class="hidden"></p>
-                <input type="number" id="number" placeholder="Number here">
-            </div>
-            <div class="m-15">
-                <p id="points"></p>
-                <h2 id="over"></h2>
-            </div>
-            <div class="m-15">
-                <button id="play">Play</button>
-                <button id="reset">Reset</button>
+        <div class="game flex-c">
+            <div class="innerGame">
+                <h1 class="m-15">Campo Minato</h1>
+                <div>
+                    <label for="level">Please select level</label>
+                    <select name="level" id="level">
+                        <option value="easy" selected>Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+                <div class="m-15 flex-c">
+                    <p id="difficulty"></p>
+                    <p id="message"></p>
+                    <p id="alert" class="hidden alert"></p>
+                    <input class="m-15" type="number" id="number" placeholder="Number here">
+                </div>
+                <div id="game-score" class="m-15 hidden">
+                    <p id="points"></p>
+                    <h2 id="over"></h2>
+                </div>
+                <div class="m-15 flex-c">
+                    <div class="m-15" id="play">Play</div>
+                    <div id="reset">Reset</div>
+                </div>
             </div>
         </div>
     </div>
