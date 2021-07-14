@@ -10,14 +10,30 @@
 </head>
 
 <body>
-    <div class="game">
+    <div class="flex">
+        <div class="game">
+            <h1 class="m-15">Campo Minato</h1>
+            <select name="level" id="level">
+                <option value="easy" selected>Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
 
-        <h1>Campo Minato</h1>
-
-        <p id="difficulty"></p>
-        <p id="message"></p>
-
-        <p id="points"></p>
+            <div class="m-15">
+                <p id="difficulty"></p>
+                <p id="message"></p>
+                <p id="alert" class="hidden"></p>
+                <input type="number" id="number" placeholder="Number here">
+            </div>
+            <div class="m-15">
+                <p id="points"></p>
+                <h2 id="over"></h2>
+            </div>
+            <div class="m-15">
+                <button id="play">Play</button>
+                <button id="reset">Reset</button>
+            </div>
+        </div>
     </div>
 
 
