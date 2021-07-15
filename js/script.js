@@ -56,7 +56,11 @@ let bomba = false;
 const userChoice = [];
 
 // variabile max per range difficoltà
-let maxNum = 0;
+let maxNum = 100;
+let numBombs = 16;
+let tentativi = maxNum - numBombs;
+
+console.log(tentativi - 1);
 
 
 // array bombe di 16 cifre da 1 a 100 (cifre diverse)
@@ -71,22 +75,11 @@ resetButton.addEventListener('click', function () {
 })
 
 
-//! non mi piacevano i prompt
-// Richiesta selezione difficoltà
-//var level = prompt('Easy, medium or hard').toLowerCase().trim();
-
-// Validazione difficoltà
-// while (level != 'easy' && level != 'medium' && level != 'hard' || level === " " && !level) {
-//     alertError.innerText = 'Please insert correct difficulty';
-//     //alert('Please insert correct difficulty');
-//     level = prompt('Easy, medium or hard').toLowerCase().trim();
-
-// }
-
 playButton.addEventListener('click', function () {
 
 
     let levelValue = levelField.value;
+
 
     // cambio difficoltà attraverso switch
     switch (levelValue) {
@@ -131,9 +124,8 @@ playButton.addEventListener('click', function () {
 
     var i = 0;
 
-    // includes lasciato apposta qui giusto per usare un po tutto 
     // se array bombe non include scelta utente e array scelta utente non include lo stesso numero continua a giocare
-    if (bomba === false && i < (100 - 16)) {
+    if (bomba === false) {
 
         //var userNumber = parseInt(prompt('Inserisci un numero' + 'tentativi restanti: ' + (85 - i), 1));
         validateNum(1, maxNum, userNumber);
@@ -142,28 +134,25 @@ playButton.addEventListener('click', function () {
             alertError.classList.remove('hidden');
             alertError.classList.add('red');
             alertError.innerText = 'per favore inserire un numero compreso tra 1 e ' + maxNum;
-            ////userNumber = parseInt(prompt('per favore inserire un numero compreso tra 1 e ' + maxNum, 1));
-        } else if (arrayIncludes(userChoice, userNumber)) {
-            //// se array scelte utente contiene un numero gia scelto continuo a chiedere
 
-            //!userChoice.includes(userNumber) - soluzione easy
+        } else if (arrayIncludes(userChoice, userNumber)) {
 
             alertError.classList.add('red');
             alertError.classList.remove('hidden');
             alertError.innerText = 'Numero già inserito per favore riprovare';
 
-            //alert('Numero già inserito per favore riprovare')
-
         } else if (arrayIncludes(bombs, userNumber)) {
             // se bombs include scelta utente il gioco finisce GAME OVER
-            ////bombs.includes(userNumber) - soluzione easy
 
             bomba = true;
 
-            ////alert('GameOver');
             console.log('Game Over');
             gameOver.innerText = 'GAME OVER!'
 
+            // output Punteggio
+            console.log('Punteggio ottenuto: ', userChoice.length);
+            gameScore.classList.remove('hidden');
+            pointsDisplay.innerText = 'Punteggio ottenuto: ' + userChoice.length;
 
         } else {
 
@@ -178,10 +167,6 @@ playButton.addEventListener('click', function () {
     }
 
 
-    // output Punteggio
-    console.log('Punteggio ottenuto: ', userChoice.length);
-    gameScore.classList.remove('hidden');
-    pointsDisplay.innerText = 'Punteggio ottenuto: ' + userChoice.length;
 
 })
 
@@ -201,7 +186,7 @@ function arrayIncludes(myArray, myElement) {
 
     let includes = false;
     let i = 0;
-    while (i < myArray.length) {
+    while (!includes && i < myArray.length) {
         if (myElement === myArray[i]) {
             includes = true;
         }
