@@ -50,17 +50,17 @@ let confirmLevel = document.getElementById('confirm');
 let gameScore = document.getElementById('game-score');
 
 //utilizzata per interromper ciclo while.
-var bomba = false;
+let bomba = false;
 
 // array per scelta utente
-var userChoice = [];
+const userChoice = [];
 
 // variabile max per range difficoltà
-var maxNum = 0;
+let maxNum = 0;
 
 
 // array bombe di 16 cifre da 1 a 100 (cifre diverse)
-var bombs = [];
+const bombs = [];
 
 
 // reset button
@@ -111,7 +111,7 @@ playButton.addEventListener('click', function () {
 
     while (bombs.length < 16) {
 
-        var randomNumber = randomizeNumber(1, maxNum);
+        let randomNumber = randomizeNumber(1, maxNum);
 
         if (!bombs.includes(randomNumber)) {
             bombs.push(randomNumber);
@@ -126,7 +126,7 @@ playButton.addEventListener('click', function () {
     //sezione alert nascosta
     alertError.classList.add('hidden');
 
-    var userNumber = parseInt(inputField.value);
+    let userNumber = parseInt(inputField.value);
     console.log(userNumber);
 
     var i = 0;
@@ -199,8 +199,8 @@ function randomizeNumber(min, max) {
 // Ricerca in array
 function arrayIncludes(myArray, myElement) {
 
-    var includes = false;
-    var i = 0;
+    let includes = false;
+    let i = 0;
     while (i < myArray.length) {
         if (myElement === myArray[i]) {
             includes = true;
@@ -214,7 +214,7 @@ function arrayIncludes(myArray, myElement) {
 // Validate Number
 
 function validateNum(min, max, num) {
-    result = false;
+    let result = false;
     if (num >= min && num <= max) {
         result = true;
     }
